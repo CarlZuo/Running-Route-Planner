@@ -9,8 +9,8 @@ The runner who intends to use the app to help them plan the the running route
 
 ## User Stories
 I, as a fresh runner, I don't know how long is 5km and I want to figure out a 5 km long running route in the city<br>
-
 I, as a runner with some healthy problem on knees, I would like the running route to be more solid rather than multiple dangerous downhills and uphills conditions<br>
+I, as a runner who wants
 
 ## MVP
 Minimum Viable Product
