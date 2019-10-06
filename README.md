@@ -40,31 +40,31 @@ Other targets can be considered:
 
 ### Existing similar products
 1.MapMyFitness
-Advantages:
+1.1 Advantages:
 - Using Google map to track and record users' route with distance, time, altitude and speed.
 - Users can store and share their routes with app community members
 - The app could recommend the recent routes which shared by community members to the users
 - The app could give the feedback to user by analyzing their heart beat rate
-Disadvantages:
+1.2 Disadvantages:
 - It doesn't show up famous routes for users to mimic
 - It couldn't have multiple choices for users to choose, such as, weight control running with large undulating terrain and fitness running with uniform speed
-Technologies:
+1.3 Technologies:
 - Google Map API
 - Android Studio
 - Mongo DB
 
 2. RunKeeper
-Advantages:
+2.1 Advantages:
 - Check real-time fitness data such as speed, distance, time and consumed calories with voice prompts
 - playing users favourite music when they running
 - taking photos of current routes and share them with your friends
 - reminder to new plan messages and assign new fitness plan
 - followers could see the real-time route when you are running
-Disadvantages:
+2.2 Disadvantages:
 - It couldn't see others complete routes
 - It couldn't mimic famous route or compete with friends
 - It couldn't give the details of route which contains how many mountains or how many easy pathes
-Technologies:
+2.3 Technologies:
 - Google Map API
 - Android Studio
 - Mongo DB
