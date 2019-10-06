@@ -55,7 +55,7 @@ Other targets can be considered:
 ## System Design
 
 ### Major Components you think you will use
-
+![image](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/fit_diagram.jpg)
 
 ### Technology Selection and reason behind selection including comparisons
 
