@@ -81,10 +81,14 @@ https://patents.google.com/patent/EP1939802A2/en
 
 ### Technology Selection and reason behind selection including comparisons
 
-**Language:** Java, XML, JSON <br>
-**DataBase:** MangoDB <br>
 **Tools:** Android Studio <br>
+**Language:** Java, XML, JSON <br>
+The java language is an object-oriented language and it is useful for App development on Android Studio.<br>
+JSON has great advantages in executing the data in database<br>
+**DataBase:** MongoDB <br>
+MongoDB is a useful open source database good for student studying and development.<br>
 **API:** Google Map API <br>
+Google Map API Platform is a useful open source location map platform and we could fetch the location data on it easily.<br>
 
 ### Any test or verification programs
 If we enter the distance into program, I will get the routes whose distance is similar as I entered, on the UI of APP.  
