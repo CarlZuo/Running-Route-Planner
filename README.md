@@ -52,7 +52,7 @@ Technologies:
 - Google Map API
 - Android Studio
 - Mongo DB
-
+<br>
 2. RunKeeper
 Advantages:
 - Check real-time fitness data such as speed, distance, time and consumed calories with voice prompts
