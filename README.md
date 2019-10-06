@@ -52,7 +52,6 @@ Technologies:
 - Google Map API
 - Android Studio
 - Mongo DB
-<br>
 
 2. RunKeeper
 Advantages:
