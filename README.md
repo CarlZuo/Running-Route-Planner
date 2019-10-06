@@ -84,7 +84,7 @@ https://patents.google.com/patent/EP1939802A2/en
 **Tools:** Android Studio <br>
 **Language:** Java, XML, JSON <br>
 The java language is an object-oriented language and it is useful for App development on Android Studio.<br>
-JSON has great advantages in executing the data in database<br>
+JSON has great advantages in executing the data in database.<br>
 **DataBase:** MongoDB <br>
 MongoDB is a useful open source database good for student studying and development.<br>
 **API:** Google Map API <br>
