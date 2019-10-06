@@ -53,7 +53,7 @@ Other targets can be considered:
 - Google Map API
 - Android Studio
 - Mongo DB
-
+![RunKeeper](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/RunKeeper.png)
 #### RunKeeper
 ##### Advantages:
 - Check real-time fitness data such as speed, distance, time and consumed calories with voice prompts
@@ -90,7 +90,7 @@ JSON has great advantages in executing the data in database.<br>
 MongoDB is a useful open source database good for student studying and development.<br>
 **API:** Google Map API <br>
 Google Map API Platform is a useful open source location map platform and we could fetch the location data on it easily.<br>
-
+![UI](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/UI.png)
 ### Any test or verification programs
 If we enter the distance into program, I will get the routes whose distance is similar as I entered, on the UI of APP.  
 
