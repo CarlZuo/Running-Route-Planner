@@ -39,6 +39,7 @@ Other targets can be considered:
 ## Product Survey
 
 ### Existing similar products
+![MapMyFitness](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/MapMyFitness.png)
 #### MapMyFitness
 ##### Advantages:
 - Using Google map to track and record users' route with distance, time, altitude and speed.
