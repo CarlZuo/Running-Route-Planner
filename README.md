@@ -70,6 +70,9 @@ Other targets can be considered:
 - Mongo DB
 
 ### Patent Analysis
+- **Integrated journey planner:** A method of providing journey information to a user comprises receiving unique location reference information identifying the start and end locations of the user-defined journey and considering at least some possible predetermined pairs of access points to a transport network of a single mode of transport, the access points being at different locations than the start and end locations.
+https://patents.google.com/patent/EP1939802A2/en
+
 
 ## System Design
 
