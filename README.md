@@ -74,14 +74,27 @@ Other targets can be considered:
 ## System Design
 
 ### Major Components you think you will use
+![image](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/fit_diagram.jpg)
+
 ### Technology Selection and reason behind selection including comparisons
+
+**Language:** Java, XML, JSON <br>
+**DataBase:** MangoDB <br>
+**Tools:** Android Studio <br>
+**API:** Google Map API <br>
+
 ### Any test or verification programs
+If we enter the distance into program, I will get the routes whose distance is similar as I entered, on the UI of APP.  
 
 ## Administrative
 
 ### Project Lead: 
-Sprint presentation for the class.
+Sprint presentation for the class
 Handover to Sprint 2 project lead
 
 ### Sprint 2 Project Lead:
 Sprint 2 plan and assignments
+- Finish the code in basic function which can plan route based on distance.
+- Add extra function code which can allow the user to mimic others.
+- design test code
+
