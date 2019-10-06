@@ -64,7 +64,7 @@ Disadvantages:
 - It couldn't see others complete routes
 - It couldn't mimic famous route or compete with friends
 - It couldn't give the details of route which contains how many mountains or how many easy pathes
-Techonologies:
+Technologies:
 - Google Map API
 - Android Studio
 - Mongo DB
