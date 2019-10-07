@@ -19,7 +19,7 @@ Design an app to help people design the running route depends on their favor opt
 
 - I, as a runner with some healthy problem on knees, I would like the running route to be more solid rather than multiple dangerous downhills and uphills conditions
 
-- I, the fitness coach/professional runner, would like to share my running routes so that people nearby. It not only will bring more fans with me, but also help people run correctly.
+- I, the fitness coach/professional runner, would like to share my running routes so that can benefit people nearby. It not only will bring more fans with me, but also help people run correctly.
 
 - I, the normal runner, just want mimic friends,  famous people and coach fitness running routes, to get the similar routes as theirs.
 
