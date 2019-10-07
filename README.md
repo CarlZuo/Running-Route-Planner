@@ -4,7 +4,7 @@ Sprint 1
 
 ## Product Definition
 ### Product Mission
-Design an app to help people design the running route depends on their favor options. 
+Design an app to help people have the running route depends on their favor options. 
 
 ### Target Users:
 - The people who like to run but do not konw how to plan a route.
