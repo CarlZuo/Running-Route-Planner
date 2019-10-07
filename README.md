@@ -1,5 +1,6 @@
 # Running-Route-Planner
-EC601-Team Project
+EC601-Team Project<br>
+Ganghao Li, Ting Zhang, Hao Zuo<br>
 Sprint 1
 
 ## Product Definition
