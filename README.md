@@ -8,8 +8,8 @@ Sprint 1
 Design an app to help people have the running route depends on their favor options. 
 
 ### Target Users:
-- The people who like to run but do not konw how to plan a route.
-- The runner who want to follow others' runinng route.
+- The people who like to run but do not know how to plan a route.
+- The runner who want to follow others' running route.
 
 ### User Stories
 - I, the fresh man in running, would like to know which kind of routes is healthy to me. (how long should I run depends on my height and weight).
