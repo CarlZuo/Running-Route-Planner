@@ -75,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // set up zoom setting
             mMap.getUiSettings().setZoomControlsEnabled(true);
             // Add a marker in London and move the camera
-            LatLng Boston = new LatLng(37.37, 75.51);
+            LatLng Boston = new LatLng(42.36, -71.06);
             mMap.addMarker(new MarkerOptions().position(Boston).title("Marker in Boston"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(Boston));
         }
