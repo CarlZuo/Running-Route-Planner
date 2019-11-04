@@ -111,3 +111,13 @@ Sprint 2 plan and assignments
 ## System Design Progress
 
 ![first](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/first.jpg)
+
+![second](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/second.jpg)
+
+The pictures above show the progress we made in the sprint2. Until now we have finished the implementation of three main activities in the app development: Main Activity which contains the logic data deliver, Preference Activity which contains the input UI and record of the input data, and Google Map Activity which call the Google Map API. Also, we have take a try about the database in another app platform and decided to use the MySQL to store the running data. Currently, we could get the location of the runner and store their input in the preference UI.
+
+### Architecture Progress
+
+![architecture1](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/system1.jpg)
+
+![s2](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/system2.jpg)
