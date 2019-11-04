@@ -74,17 +74,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <RadioGroup
-        android:id="@+id/rg1"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="254dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input">
 
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/rg1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -93,38 +95,45 @@
                 android:id="@+id/hill_y"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="15dp"
                 android:checked="true"
                 android:text="Yes"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="72dp"
+                tools:layout_editor_absoluteX="152dp"
+                tools:layout_editor_absoluteY="307dp" />
 
             <RadioButton
                 android:id="@+id/hill_n"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="15dp"
                 android:text="No"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:layout_conversion_absoluteHeight="1dp"
+                tools:layout_conversion_absoluteWidth="63dp"
+                tools:layout_editor_absoluteX="172dp"
+                tools:layout_editor_absoluteY="355dp" />
 
-        </LinearLayout>
+        </RadioGroup>
+    </LinearLayout>
 
-    </RadioGroup>
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="254dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/l1">
 
-    <RadioGroup
-        android:id="@+id/rg2"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/rg1" >
-
-        <LinearLayout
+        <RadioGroup
+            android:id="@+id/rg2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -133,8 +142,7 @@
                 android:id="@+id/loop_y"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="15dp"
                 android:checked="true"
                 android:text="Yes"
@@ -144,14 +152,14 @@
                 android:id="@+id/loop_n"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="0dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="15dp"
                 android:text="No"
                 android:textSize="24sp" />
 
-        </LinearLayout>
-    </RadioGroup>
+        </RadioGroup>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/input"
