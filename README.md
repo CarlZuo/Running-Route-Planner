@@ -121,3 +121,24 @@ The pictures above show the progress we made in the sprint2. Until now we have f
 ![architecture1](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/system1.jpg)
 
 ![s2](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/system2.jpg)
+
+### Component Decision
+
+#### Android Studio App User Interface:
+	
+Easy to access the location thanks to the Android Mobile;
+
+Can implement several activities and services which could divide input/output, display screen and routing algorithm separately;
+
+#### Google Map API:
+	
+Functions of locating and calculating the distance;
+
+The library “polyline” provided by Google Map API helps to draw out the route and record the runner’s running track;
+
+#### Database:
+	
+Since the data record of runners’ route cannot be so large, thus we think MySQL is good and enough to store the log data of running;
+
+
+
