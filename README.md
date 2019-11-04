@@ -106,4 +106,8 @@ Sprint 2 plan and assignments
 - Finish the code in basic function which can plan route based on distance.
 - Add extra function code which can allow the user to mimic others.
 - design test code
+# Sprint2
 
+## System Design Progress
+
+![first](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/first.jpg)
