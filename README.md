@@ -106,4 +106,39 @@ Sprint 2 plan and assignments
 - Finish the code in basic function which can plan route based on distance.
 - Add extra function code which can allow the user to mimic others.
 - design test code
+# Sprint2
+
+## System Design Progress
+
+![first](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/first.jpg)
+
+![second](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/second.jpg)
+
+The pictures above show the progress we made in the sprint2. Until now we have finished the implementation of three main activities in the app development: Main Activity which contains the logic data deliver, Preference Activity which contains the input UI and record of the input data, and Google Map Activity which call the Google Map API. Also, we have take a try about the database in another app platform and decided to use the MySQL to store the running data. Currently, we could get the location of the runner and store their input in the preference UI.
+
+### Architecture Progress
+
+![architecture1](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/system1.jpg)
+
+![s2](https://github.com/CarlZuo/Running-Route-Planner/blob/master/Images/system2.jpg)
+
+### Component Decision
+
+#### Android Studio App User Interface:
+	
+Easy to access the location thanks to the Android Mobile;
+
+Can implement several activities and services which could divide input/output, display screen and routing algorithm separately;
+
+#### Google Map API:
+	
+Functions of locating and calculating the distance;
+
+The library “polyline” provided by Google Map API helps to draw out the route and record the runner’s running track;
+
+#### Database:
+	
+Since the data record of runners’ route cannot be so large, thus we think MySQL is good and enough to store the log data of running;
+
+
 
