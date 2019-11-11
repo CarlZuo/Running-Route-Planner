@@ -4,24 +4,42 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.Manifest;
 import android.content.Context;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import com.example.runningrouteplanner.DirectionFinder;
+import com.example.runningrouteplanner.DirectionFinderListener;
+import com.example.runningrouteplanner.Route;
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
 
     private GoogleMap mMap;
     private int myRequestCode = 1;
-
+    private List<Marker> originMarkers = new ArrayList<>();
+    private List<Marker> destinationMarker = new ArrayList<>();
+    private List<Polyline> polyLinePaths = new ArrayList<>();
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +48,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    public void onStartClick(View view) {
+        sendRequest();
+    }
+
+    private void sendRequest() {
+        String origin ="42.350,-71.106";
+        String destination ="42.330,-71.126";
+
+        if (origin.isEmpty()) {
+            Toast.makeText(this, "Please enter origin!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (destination.isEmpty()){
+            Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        try {
+            new DirectionFinder(this, origin, destination).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -75,9 +116,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // set up zoom setting
             mMap.getUiSettings().setZoomControlsEnabled(true);
             // Add a marker in London and move the camera
-            LatLng Boston = new LatLng(42.36, -71.06);
+            LatLng Boston = new LatLng(42.350, -71.106);
             mMap.addMarker(new MarkerOptions().position(Boston).title("Marker in Boston"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(Boston));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Boston, 14));
+//            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         }
     }
     // handle the permission request with specific request code, and close the activity if permission denied
@@ -94,6 +136,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 toast.show();
                 onDestroy();
             }
+        }
+    }
+    @Override
+    public void onDirectionFinderStart() {
+        progressDialog = ProgressDialog.show(this, "Please wait", "Finding direction", true);
+        if (originMarkers != null) {
+            for (Marker marker : originMarkers) {
+                marker.remove();
+            }
+        }
+        if (destinationMarker != null) {
+            for (Marker marker : destinationMarker) {
+                marker.remove();
+            }
+        }
+        if (polyLinePaths != null) {
+            for (Polyline polylinePath : polyLinePaths) {
+                polylinePath.remove();
+            }
+        }
+    }
+    @Override
+    public void onDirectionFinderSuccess(List<Route> routes) {
+        progressDialog.dismiss();
+        polyLinePaths = new ArrayList<>();
+        originMarkers = new ArrayList<>();
+        destinationMarker = new ArrayList<>();
+
+        for (Route route : routes) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 15));
+
+            originMarkers.add(mMap.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.googleg_standard_color_18))
+                    .title(route.startAddress)
+                    .position(route.startLocation)));
+
+            destinationMarker.add(mMap.addMarker(new MarkerOptions()
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.googleg_disabled_color_18))
+                    .title(route.endAddress)
+                    .position(route.endLocation)));
+
+            PolylineOptions polylineOptions = new PolylineOptions()
+                    .geodesic(true)
+                    .color(Color.RED)
+                    .width(10);
+
+            for (int i = 0; i < route.points.size(); i++) {
+                polylineOptions.add(route.points.get(i));
+            }
+
+            polyLinePaths.add(mMap.addPolyline(polylineOptions));
         }
     }
 }
