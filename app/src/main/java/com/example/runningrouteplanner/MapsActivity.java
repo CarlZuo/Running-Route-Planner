@@ -6,10 +6,12 @@ import androidx.fragment.app.FragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Math;
 
 import android.Manifest;
 import android.content.Context;
 import android.app.Activity;
+import android.content.Intent;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -40,6 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Marker> destinationMarker = new ArrayList<>();
     private List<Polyline> polyLinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
+    private double dis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Intent i = getIntent();
+        Bundle a =i.getExtras();
+        dis = a.getDouble("distance",2);
     }
 
     public void onStartClick(View view) {
@@ -56,12 +62,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void sendRequest() {
         String origin ="42.350,-71.106";
-        String destination ="42.330,-71.126";
+        double x = 42.350 - 2*dis/(100*6);
+        double y = -71.106 - 2.5*dis/(100*6);
+        String destination = x+","+y;
+//        String destination ="42.330,-71.126";
 
-        if (origin.isEmpty()) {
-            Toast.makeText(this, "Please enter origin!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (origin.isEmpty()) {
+//            Toast.makeText(this, "Please enter origin!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         if (destination.isEmpty()){
             Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
             return;
@@ -168,12 +177,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 15));
 
             originMarkers.add(mMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.googleg_standard_color_18))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.googleg_disabled_color_18))
                     .title(route.startAddress)
                     .position(route.startLocation)));
 
             destinationMarker.add(mMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.googleg_disabled_color_18))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.googleg_standard_color_18))
                     .title(route.endAddress)
                     .position(route.endLocation)));
 
