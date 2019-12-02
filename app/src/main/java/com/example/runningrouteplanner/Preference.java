@@ -10,14 +10,16 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class Preference extends AppCompatActivity {
-
+    private EditText dis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
+        dis = findViewById(R.id.input);
     }
 
     public void onStartClick(View view){
@@ -29,6 +31,9 @@ public class Preference extends AppCompatActivity {
             toast.show();
         }else {
             Intent intent = new Intent(Preference.this, MapsActivity.class);
+            Bundle a = new Bundle();
+            a.putDouble("distance",Double.valueOf(dis.getText().toString()));
+            intent.putExtras(a);
             startActivity(intent);
             Context context = getApplicationContext();
             CharSequence text = "Open the Map!";
