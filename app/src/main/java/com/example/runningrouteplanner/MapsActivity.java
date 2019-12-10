@@ -140,11 +140,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
             // set up zoom setting
             mMap.getUiSettings().setZoomControlsEnabled(true);
-            // Add a marker in London and move the camera
-            LatLng Boston = new LatLng(42.350, -71.106);
-            mMap.addMarker(new MarkerOptions().position(Boston).title("Marker in Boston"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Boston, 14));
-//            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            // Add a marker in Current Location and move the camera
+            // LatLng Boston = new LatLng(42.350, -71.106);
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(currentLocation).title("Marker in Boston"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 14));
         }
     }
     // handle the permission request with specific request code, and close the activity if permission denied
