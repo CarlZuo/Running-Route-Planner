@@ -9,13 +9,17 @@ import java.util.List;
 import java.lang.Math;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.app.Activity;
 import android.content.Intent;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -43,6 +47,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Polyline> polyLinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
     private double dis;
+    private LocationManager locationManager;
+    private Location location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,23 +60,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Intent i = getIntent();
         Bundle a =i.getExtras();
         dis = a.getDouble("distance",2);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        location = getCurrentLocation();
     }
 
     public void onStartClick(View view) {
         sendRequest();
     }
 
-    private void sendRequest() {
-        String origin ="42.350,-71.106";
-        double x = 42.350 - 2*dis/(100*6);
-        double y = -71.106 - 2.5*dis/(100*6);
-        String destination = x+","+y;
-//        String destination ="42.330,-71.126";
+    public static String locationStringFromLocation(final Location location) {
+        return Location.convert(location.getLatitude(), Location.FORMAT_DEGREES) + "," + Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
+    }
 
-//        if (origin.isEmpty()) {
-//            Toast.makeText(this, "Please enter origin!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
+    @SuppressLint("MissingPermission")
+    private Location getCurrentLocation () {
+        if (locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
+            location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        }
+        return location;
+    }
+
+    private void sendRequest() {
+        String origin = locationStringFromLocation(location);
+        String originX = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
+        String originY = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
+        double x = Double.parseDouble(originX) - 2*dis/(100*6);
+        double y = Double.parseDouble(originY) - 2.5*dis/(100*6);
+        String destination = x+","+y;
         if (destination.isEmpty()){
             Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
             return;
