@@ -11,8 +11,8 @@ public class MyProviderContract {
     public static final String _ID = "_id";
 
     public static final String DATE = "date";
-    public static final String StartPoint = "startPoint";
-    public static final String EndPoint = "endPoint";
+    public static final String STARTPOINT = "startPoint";
+    public static final String ENDPOINT = "endPoint";
     public static final String DISTANCE = "distance";
 
     public static final String CONTENT_TYPE_SINGLE = "vnd.android.cursor.item/MyProvider.data.text";

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class History extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -36,8 +38,8 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
 
         ArrayList<String> items = new ArrayList<String>();
         items.add("date");
-        items.add("startTime");
-        items.add("endTime");
+        items.add("startPoint");
+        items.add("endPoint");
         items.add("distance");
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
@@ -98,12 +100,16 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
         String[] projection = new String[] {
                 MyProviderContract._ID,
                 MyProviderContract.DATE,
+                MyProviderContract.STARTPOINT,
+                MyProviderContract.ENDPOINT,
                 MyProviderContract.DISTANCE,
         };
 
         String colsToDisplay [] = new String[] {
                 MyProviderContract._ID,
                 MyProviderContract.DATE,
+                MyProviderContract.STARTPOINT,
+                MyProviderContract.ENDPOINT,
                 MyProviderContract.DISTANCE,
         };
 

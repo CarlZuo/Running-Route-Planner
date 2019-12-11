@@ -1,6 +1,8 @@
 package com.example.runningrouteplanner;
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SimpleCursorAdapter;
@@ -33,7 +35,7 @@ public class LogDetails extends AppCompatActivity {
         String myEnd = "   " +bundle3.getString("myEnd");
 
         Bundle bundle4 = getIntent().getExtras();
-        String myDistance = "   " +bundle4.getString("myDistance") + " m";
+        String myDistance = "   " +bundle4.getString("myDistance") + " km";
 
         TextView s1 = (TextView) findViewById(R.id.ID);
         s1.setText(myId);
@@ -49,11 +51,10 @@ public class LogDetails extends AppCompatActivity {
 
         TextView s5 = (TextView) findViewById(R.id.Distance);
         s5.setText(myDistance);
-        
+
     }
 
     public void onDeleteClick(View view) {
-
         // delete data and toast information
         getContentResolver().delete(MyProviderContract.TRACKER_URI,"_id=?", new String[]{myId});
         Context context = getApplicationContext();
@@ -62,5 +63,17 @@ public class LogDetails extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
         finish();
+    }
+
+    public void onReLoadClick(View view){
+        Intent intent = new Intent(LogDetails.this, MapsActivity.class);
+        Bundle a = new Bundle();
+        a.putInt("source",2);
+        TextView s1 = (TextView) findViewById(R.id.StartPoint);
+        a.putString("start", s1.getText().toString());
+        TextView s2 = (TextView) findViewById(R.id.EndPoint);
+        a.putString("end", s2.getText().toString());
+        intent.putExtras(a);
+        startActivity(intent);
     }
 }

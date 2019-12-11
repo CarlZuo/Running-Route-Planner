@@ -46,6 +46,14 @@
                 android:onClick="onStoreClick"
                 android:text="Store" />
 
+            <Button
+                android:id="@+id/History"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onHistoryClick"
+                android:text="History" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -54,11 +62,11 @@
         android:id="@+id/type"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="150dp"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginRight="200dp"
         android:layout_weight="1"
-        android:textSize="24sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
