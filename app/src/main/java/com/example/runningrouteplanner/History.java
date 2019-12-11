@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class History extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -41,7 +39,6 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
         items.add("startTime");
         items.add("endTime");
         items.add("distance");
-        items.add("speed");
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -79,17 +76,14 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
             case "date":
                 queryTrack("date");
                 break;
-            case "startTime":
-                queryTrack("startTime");
+            case "startPoint":
+                queryTrack("startPoint");
                 break;
-            case "endTime":
-                queryTrack("endTime");
+            case "endPoint":
+                queryTrack("endPoint");
                 break;
             case "distance":
                 queryTrack("distance");
-                break;
-            case "speed":
-                queryTrack("speed");
                 break;
         }
     }
@@ -116,10 +110,9 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
         int[] colResIds = new int[] {
                 R.id.ID,
                 R.id.Date,
-                R.id.StartTime,
-                R.id.EndTime,
+                R.id.StartPoint,
+                R.id.EndPoint,
                 R.id.Distance,
-                R.id.Speed
         };
 
         Cursor cursor = getContentResolver().query(MyProviderContract.TRACKER_URI, projection, null, null, order);
@@ -152,12 +145,12 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
                 Bundle bundle1 = new Bundle();
                 bundle1.putString("myDate", s1);
 
-                TextView myStart = (TextView)v.findViewById(R.id.StartTime);
+                TextView myStart = (TextView)v.findViewById(R.id.StartPoint);
                 String s2 = myStart.getText().toString();
                 Bundle bundle2 = new Bundle();
                 bundle2.putString("myStart", s2);
 
-                TextView myEnd = (TextView)v.findViewById(R.id.EndTime);
+                TextView myEnd = (TextView)v.findViewById(R.id.EndPoint);
                 String s3 = myEnd.getText().toString();
                 Bundle bundle3 = new Bundle();
                 bundle3.putString("myEnd", s3);

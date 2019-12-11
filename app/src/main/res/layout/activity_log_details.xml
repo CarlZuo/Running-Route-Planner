@@ -107,7 +107,7 @@
                     app:fontFamily="sans-serif" />
 
                 <TextView
-                    android:id="@+id/StartTime"
+                    android:id="@+id/StartPoint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -118,7 +118,7 @@
                     app:fontFamily="sans-serif" />
 
                 <TextView
-                    android:id="@+id/EndTime"
+                    android:id="@+id/EndPoint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
