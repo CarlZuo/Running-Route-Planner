@@ -42,7 +42,7 @@
 
         <provider
             android:name=".MyProvider"
-            android:authorities="com.example.zuohao.runningtracker.MyProvider"
+            android:authorities="com.example.runningrouteplanner.MyProvider"
             android:exported="true"
             android:multiprocess="true" />
 
