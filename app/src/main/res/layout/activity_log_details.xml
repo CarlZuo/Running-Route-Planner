@@ -67,14 +67,6 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Speed"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -139,20 +131,16 @@
                     android:textStyle="bold"
                     app:fontFamily="sans-serif" />
 
-                <TextView
-                    android:id="@+id/Speed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Speed"
-                    android:textColor="@android:color/holo_blue_light"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
-
             </LinearLayout>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/Reload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onReLoadClick"
+            android:text="Reload" />
 
         <Button
             android:id="@+id/Delete"
