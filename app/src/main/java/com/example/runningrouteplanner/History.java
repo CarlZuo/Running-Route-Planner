@@ -160,11 +160,6 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
                 Bundle bundle4 = new Bundle();
                 bundle4.putString("myDistance", s4);
 
-                TextView mySpeed = (TextView)v.findViewById(R.id.Speed);
-                String s5 = mySpeed.getText().toString();
-                Bundle bundle5 = new Bundle();
-                bundle5.putString("mySpeed", s5);
-
                 // send details to LogDetail activity
                 Intent intent = new Intent(History.this, LogDetails.class);
                 intent.putExtras(bundle);
@@ -172,7 +167,6 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
                 intent.putExtras(bundle2);
                 intent.putExtras(bundle3);
                 intent.putExtras(bundle4);
-                intent.putExtras(bundle5);
                 startActivity(intent);
             }
         });
