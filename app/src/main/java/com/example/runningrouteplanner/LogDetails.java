@@ -35,9 +35,6 @@ public class LogDetails extends AppCompatActivity {
         Bundle bundle4 = getIntent().getExtras();
         String myDistance = "   " +bundle4.getString("myDistance") + " m";
 
-        Bundle bundle5 = getIntent().getExtras();
-        String mySpeed = "   " +bundle5.getString("mySpeed") + " m/s";
-
         TextView s1 = (TextView) findViewById(R.id.ID);
         s1.setText(myId);
 
@@ -52,10 +49,7 @@ public class LogDetails extends AppCompatActivity {
 
         TextView s5 = (TextView) findViewById(R.id.Distance);
         s5.setText(myDistance);
-
-        TextView s6 = (TextView) findViewById(R.id.Speed);
-        s6.setText(mySpeed);
-
+        
     }
 
     public void onDeleteClick(View view) {
