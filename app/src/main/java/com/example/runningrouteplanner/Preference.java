@@ -39,6 +39,7 @@ public class Preference extends AppCompatActivity {
         }else {
             Intent intent = new Intent(Preference.this, MapsActivity.class);
             Bundle a = new Bundle();
+            a.putInt("source",1);
             a.putDouble("distance",Double.valueOf(dis.getText().toString()));
             int id = loop.getCheckedRadioButtonId();
             if (id==R.id.loop_y) loop_choice=true;

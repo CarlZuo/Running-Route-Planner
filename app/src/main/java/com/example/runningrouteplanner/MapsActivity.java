@@ -21,6 +21,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -51,6 +52,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int direction;
     private LocationManager locationManager;
     private Location location;
+    private TextView type;
+    private int check;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +64,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         Intent i = getIntent();
         Bundle a =i.getExtras();
-        dis = a.getDouble("distance",2);
-        loop = a.getBoolean("loop",true);
-        direction = a.getInt("direction",3);
-        String d = direction+"";
-        Log.d("direction",d);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        location = getCurrentLocation();
+        check = a.getInt("source");
+        if (check==1) {
+            dis = a.getDouble("distance", 2);
+            loop = a.getBoolean("loop", true);
+            direction = a.getInt("direction", 3);
+            String d = direction + "";
+            Log.d("direction", d);
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            location = getCurrentLocation();
+            type = findViewById(R.id.type);
+            String t = "Loop Type: ";
+            if (loop) t = t + "return ";
+            else t = t + "single";
+            type.setText(t);
+        }else{
+
+        }
     }
 
     public void onStartClick(View view) {
@@ -87,28 +100,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void sendRequest() {
-        String origin = locationStringFromLocation(location);
-        String originX = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
-        String originY = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
+        String origin;
+        String destination;
+        if (check==1) {
+            origin = locationStringFromLocation(location);
+            String originX = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
+            String originY = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
 //        double ox = Double.parseDouble(originX);
 //        double oy = Double.parseDouble(originY);
-        double x_go;
-        double y_go;
-        double factor;
-        switch (direction){
-            case 1: x_go=1.0; y_go=-1.0; break;
-            case 2: x_go=1.0; y_go=1.0; break;
-            case 3: x_go=-1.0; y_go=-1.0; break;
-            case 4: x_go=-1.0; y_go=1.0; break;
-            default: x_go=0; y_go=0; break;
+            double x_go;
+            double y_go;
+            double factor;
+            switch (direction) {
+                case 1:
+                    x_go = 1.0;
+                    y_go = -1.0;
+                    break;
+                case 2:
+                    x_go = 1.0;
+                    y_go = 1.0;
+                    break;
+                case 3:
+                    x_go = -1.0;
+                    y_go = -1.0;
+                    break;
+                case 4:
+                    x_go = -1.0;
+                    y_go = 1.0;
+                    break;
+                default:
+                    x_go = 0;
+                    y_go = 0;
+                    break;
+            }
+            if (loop) factor = 0.5;
+            else factor = 1.0;
+            Log.d("x_go", x_go + "");
+            Log.d("y_go", y_go + "");
+            double x = Double.parseDouble(originX) + x_go * 2 * dis / (100 * 6) * factor;
+            double y = Double.parseDouble(originY) + y_go * 2.5 * dis / (100 * 6) * factor;
+            destination = x + "," + y;
+        }else{
+            destination="-70,50";
+            origin ="-69.7,50";
         }
-        if (loop) factor=0.5;
-        else factor=1.0;
-        Log.d("x_go",x_go+"");
-        Log.d("y_go",y_go+"");
-        double x = Double.parseDouble(originX) + x_go*2*dis/(100*6)*factor;
-        double y = Double.parseDouble(originY) + y_go*2.5*dis/(100*6)*factor;
-        String destination = x+","+y;
         if (destination.isEmpty()){
             Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
             return;
