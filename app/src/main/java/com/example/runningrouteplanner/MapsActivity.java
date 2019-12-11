@@ -54,6 +54,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location location;
     private TextView type;
     private int check;
+    private String origin="42.350,-71.108";
+    private String destination="42.450,-71.208";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onStartClick(View view) {
         sendRequest();
     }
+    public void onStoreClick(View view){
+        Intent intent = new Intent(MapsActivity.this, History.class);
+        Bundle a = new Bundle();
+        a.putString("origin",origin);
+        a.putString("destination",destination);
+        intent.putExtras(a);
+        startActivity(intent);
+    }
 
     public static String locationStringFromLocation(final Location location) {
         return Location.convert(location.getLatitude(), Location.FORMAT_DEGREES) + "," + Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
@@ -100,8 +110,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void sendRequest() {
-        String origin;
-        String destination;
         if (check==1) {
             origin = locationStringFromLocation(location);
             String originX = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
