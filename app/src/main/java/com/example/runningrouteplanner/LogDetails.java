@@ -1,7 +1,6 @@
 package com.example.runningrouteplanner;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SimpleCursorAdapter;
@@ -45,10 +44,10 @@ public class LogDetails extends AppCompatActivity {
         TextView s2 = (TextView) findViewById(R.id.Date);
         s2.setText(myDate);
 
-        TextView s3 = (TextView) findViewById(R.id.StartTime);
+        TextView s3 = (TextView) findViewById(R.id.StartPoint);
         s3.setText(myStart);
 
-        TextView s4 = (TextView) findViewById(R.id.EndTime);
+        TextView s4 = (TextView) findViewById(R.id.EndPoint);
         s4.setText(myEnd);
 
         TextView s5 = (TextView) findViewById(R.id.Distance);

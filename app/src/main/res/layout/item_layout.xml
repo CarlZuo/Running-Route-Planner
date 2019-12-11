@@ -28,12 +28,12 @@
             app:fontFamily="sans-serif" />
 
         <TextView
-            android:id="@+id/StartTime"
+            android:id="@+id/StartPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="StartTime"
+            android:text="StartPoint"
             android:textAllCaps="false"
             android:textColor="@android:color/holo_blue_dark"
             android:textSize="18sp"
@@ -41,11 +41,11 @@
             app:fontFamily="sans-serif" />
 
         <TextView
-            android:id="@+id/EndTime"
+            android:id="@+id/EndPoint"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="EndTime" />
+            android:text="EndPoint" />
 
         <TextView
             android:id="@+id/Distance"
