@@ -94,6 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        double oy = Double.parseDouble(originY);
         double x_go;
         double y_go;
+        double factor;
         switch (direction){
             case 1: x_go=1.0; y_go=-1.0; break;
             case 2: x_go=1.0; y_go=1.0; break;
@@ -101,10 +102,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             case 4: x_go=-1.0; y_go=1.0; break;
             default: x_go=0; y_go=0; break;
         }
+        if (loop) factor=0.5;
+        else factor=1.0;
         Log.d("x_go",x_go+"");
         Log.d("y_go",y_go+"");
-        double x = Double.parseDouble(originX) + x_go*2*dis/(100*6);
-        double y = Double.parseDouble(originY) + y_go*2.5*dis/(100*6);
+        double x = Double.parseDouble(originX) + x_go*2*dis/(100*6)*factor;
+        double y = Double.parseDouble(originY) + y_go*2.5*dis/(100*6)*factor;
         String destination = x+","+y;
         if (destination.isEmpty()){
             Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
