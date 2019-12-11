@@ -9,15 +9,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
         super(context, "db", null, 1);
-        Log.d("routePlanner", "DBHelper");
+        Log.d("g54mdp", "DBHelper");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("routePlanner", "onCreateDBHelper");
+        Log.d("g54mdp", "onCreateDBHelper");
 
         // create a recipe table
-        db.execSQL("CREATE TABLE routePlanner (" +
+        db.execSQL("CREATE TABLE runningrouteplanner (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT ,"+
                 "date DATE NOT NULL," +
                 "startPoint VARCHAR NOT NULL," +
@@ -26,12 +26,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 ");");
 
         // insert two original data
-        db.execSQL("INSERT INTO routePlanner (date, startPoint, endPoint, distance) VALUES ('2019-11-08', '42.350, -71.106', '42.342, -71.147', 2.0);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-08', '09,89', '10', 5000);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-09', '08', '09', 3000);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-10', '06', '07', 1000);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-11', '07', '08', 500);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-12', '09', '10', 5000);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS routePlanner");
+        db.execSQL("DROP TABLE IF EXISTS runningrouteplanner");
         onCreate(db);
     }
 }

@@ -20,14 +20,14 @@ public class MyProvider extends ContentProvider {
 
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-        uriMatcher.addURI(MyProviderContract.AUTHORITY, "routePlanner", 1);
+        uriMatcher.addURI(MyProviderContract.AUTHORITY, "runningrouteplanner", 1);
     }
 
     // initialise DBHelper
     @Override
     public boolean onCreate() {
 
-        Log.d("routePlanner", "content provider created");
+        Log.d("g53mdp", "content provider created");
         this.dbHelper = new DBHelper(this.getContext());
         return true;
     }
@@ -52,11 +52,11 @@ public class MyProvider extends ContentProvider {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        long id = db.insert("routePlanner", null, values);
+        long id = db.insert("runningrouteplanner", null, values);
         db.close();
         Uri nu = ContentUris.withAppendedId(uri, id);
 
-        Log.d("routePlanner", nu.toString());
+        Log.d("g53mdp", nu.toString());
 
         getContext().getContentResolver().notifyChange(nu, null);
 
@@ -67,7 +67,7 @@ public class MyProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 
-        Log.d("routePlanner", uri.toString() + " " + uriMatcher.match(uri));
+        Log.d("g53mdp", uri.toString() + " " + uriMatcher.match(uri));
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -75,7 +75,7 @@ public class MyProvider extends ContentProvider {
             case 2:
                 selection = "_ID = " + uri.getLastPathSegment();
             case 1:
-                return db.query("routePlanner", projection, selection, selectionArgs, null, null, sortOrder);
+                return db.query("runningrouteplanner", projection, selection, selectionArgs, null, null, sortOrder);
             default:
                 return null;
         }
@@ -86,7 +86,7 @@ public class MyProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int affectRow = db.update("routePlanner", values, selection,selectionArgs);
+        int affectRow = db.update("runningrouteplanner", values, selection,selectionArgs);
         db.close();
 
         return affectRow;
@@ -97,7 +97,7 @@ public class MyProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        int affectRow = db.delete("routePlanner", selection, selectionArgs);
+        int affectRow = db.delete("runningrouteplanner", selection, selectionArgs);
         db.close();
 
         return affectRow;

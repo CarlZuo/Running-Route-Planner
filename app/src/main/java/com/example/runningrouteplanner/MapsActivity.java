@@ -4,12 +4,17 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.lang.Math;
+import java.util.concurrent.TimeUnit;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.app.Activity;
 import android.content.Intent;
@@ -54,8 +59,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location location;
     private TextView type;
     private int check;
+    private int planned = 0;
     private String origin="42.350,-71.108";
     private String destination="42.450,-71.208";
+    private Date startTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,14 +88,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             else t = t + "single";
             type.setText(t);
         }else{
-
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            location = getCurrentLocation();
+            origin = a.getString("start");
+            destination = a.getString("end");
+            sendRequest();
         }
     }
 
     public void onStartClick(View view) {
+        planned = 1;
         sendRequest();
     }
-    public void onStoreClick(View view){
+
+    @SuppressLint("MissingPermission")
+    public void onStoreClick(View view) {
+        if(planned == 0) return;
+        startTime = Calendar.getInstance().getTime();
+        storeLog(startTime, dis, origin, destination);
+        Context context = getApplicationContext();
+        CharSequence text = "Planning data stored!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+    // store the log into database using MyProvider
+    public void storeLog(Date date, double myDistance, String origin, String destination){
+        // format time
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String[] s = origin.split(",");
+        String[] e = destination.split(",");
+        String str2 = String.format("%.4f,%.4f", Double.parseDouble(s[0]), Double.parseDouble(s[1]));
+        String str3 = String.format("%.4f,%.4f", Double.parseDouble(e[0]), Double.parseDouble(e[1]));
+        ContentValues newValues = new ContentValues();
+        newValues.put(MyProviderContract.DATE, dateFormat.format(date));
+        newValues.put(MyProviderContract.STARTPOINT, str2);
+        newValues.put(MyProviderContract.ENDPOINT, str3);
+        newValues.put(MyProviderContract.DISTANCE, myDistance);
+
+        // insert value to running tracker table
+        getContentResolver().insert(MyProviderContract.TRACKER_URI, newValues);
+    }
+
+    public void onHistoryClick(View view){
         Intent intent = new Intent(MapsActivity.this, History.class);
         Bundle a = new Bundle();
         a.putString("origin",origin);
@@ -148,9 +190,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double x = Double.parseDouble(originX) + x_go * 2 * dis / (100 * 6) * factor;
             double y = Double.parseDouble(originY) + y_go * 2.5 * dis / (100 * 6) * factor;
             destination = x + "," + y;
-        }else{
-            destination="-70,50";
-            origin ="-69.7,50";
         }
         if (destination.isEmpty()){
             Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
