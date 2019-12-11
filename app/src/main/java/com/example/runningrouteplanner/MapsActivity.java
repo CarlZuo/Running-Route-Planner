@@ -9,14 +9,19 @@ import java.util.List;
 import java.lang.Math;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.app.Activity;
 import android.content.Intent;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +48,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<Polyline> polyLinePaths = new ArrayList<>();
     private ProgressDialog progressDialog;
     private double dis;
+    private boolean loop;
+    private int direction;
+    private LocationManager locationManager;
+    private Location location;
+    private TextView type;
+    private int check;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,24 +64,86 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         Intent i = getIntent();
         Bundle a =i.getExtras();
-        dis = a.getDouble("distance",2);
+        check = a.getInt("source");
+        if (check==1) {
+            dis = a.getDouble("distance", 2);
+            loop = a.getBoolean("loop", true);
+            direction = a.getInt("direction", 3);
+            String d = direction + "";
+            Log.d("direction", d);
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            location = getCurrentLocation();
+            type = findViewById(R.id.type);
+            String t = "Loop Type: ";
+            if (loop) t = t + "return ";
+            else t = t + "single";
+            type.setText(t);
+        }else{
+
+        }
     }
 
     public void onStartClick(View view) {
         sendRequest();
     }
 
-    private void sendRequest() {
-        String origin ="42.350,-71.106";
-        double x = 42.350 - 2*dis/(100*6);
-        double y = -71.106 - 2.5*dis/(100*6);
-        String destination = x+","+y;
-//        String destination ="42.330,-71.126";
+    public static String locationStringFromLocation(final Location location) {
+        return Location.convert(location.getLatitude(), Location.FORMAT_DEGREES) + "," + Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
+    }
 
-//        if (origin.isEmpty()) {
-//            Toast.makeText(this, "Please enter origin!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
+    @SuppressLint("MissingPermission")
+    private Location getCurrentLocation () {
+        if (locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
+            location = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        }
+        return location;
+    }
+
+    private void sendRequest() {
+        String origin;
+        String destination;
+        if (check==1) {
+            origin = locationStringFromLocation(location);
+            String originX = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
+            String originY = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
+//        double ox = Double.parseDouble(originX);
+//        double oy = Double.parseDouble(originY);
+            double x_go;
+            double y_go;
+            double factor;
+            switch (direction) {
+                case 1:
+                    x_go = 1.0;
+                    y_go = -1.0;
+                    break;
+                case 2:
+                    x_go = 1.0;
+                    y_go = 1.0;
+                    break;
+                case 3:
+                    x_go = -1.0;
+                    y_go = -1.0;
+                    break;
+                case 4:
+                    x_go = -1.0;
+                    y_go = 1.0;
+                    break;
+                default:
+                    x_go = 0;
+                    y_go = 0;
+                    break;
+            }
+            if (loop) factor = 0.5;
+            else factor = 1.0;
+            Log.d("x_go", x_go + "");
+            Log.d("y_go", y_go + "");
+            double x = Double.parseDouble(originX) + x_go * 2 * dis / (100 * 6) * factor;
+            double y = Double.parseDouble(originY) + y_go * 2.5 * dis / (100 * 6) * factor;
+            destination = x + "," + y;
+        }else{
+            destination="-70,50";
+            origin ="-69.7,50";
+        }
         if (destination.isEmpty()){
             Toast.makeText(this, "Please enter destination!", Toast.LENGTH_SHORT).show();
             return;
@@ -124,11 +197,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
             // set up zoom setting
             mMap.getUiSettings().setZoomControlsEnabled(true);
-            // Add a marker in London and move the camera
-            LatLng Boston = new LatLng(42.350, -71.106);
-            mMap.addMarker(new MarkerOptions().position(Boston).title("Marker in Boston"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Boston, 14));
-//            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            // Add a marker in Current Location and move the camera
+            // LatLng Boston = new LatLng(42.350, -71.106);
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(currentLocation).title("Marker in Boston"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 14));
         }
     }
     // handle the permission request with specific request code, and close the activity if permission denied
