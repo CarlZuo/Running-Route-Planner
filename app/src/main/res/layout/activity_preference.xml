@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
         android:layout_marginLeft="162dp"
-        android:layout_marginTop="575dp"
+        android:layout_marginTop="540dp"
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
         android:layout_marginBottom="208dp"
@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="53dp"
         android:layout_marginLeft="53dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="45dp"
         android:text="Distance"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,10 +41,10 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
-        android:layout_marginLeft="83dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
         android:layout_marginTop="43dp"
-        android:text="Hill"
+        android:text="Loop"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
         android:layout_marginLeft="98dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="60dp"
         android:text="Your Preference"
         android:textColor="#6136C9"
         android:textSize="30sp"
@@ -66,10 +66,10 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="74dp"
-        android:layout_marginLeft="74dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
         android:layout_marginTop="48dp"
-        android:text="Loop"
+        android:text="Direction"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -84,53 +84,6 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input">
-
-        <RadioGroup
-            android:id="@+id/rg1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/hill_y"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="15dp"
-                android:checked="true"
-                android:text="Yes"
-                android:textSize="24sp"
-                tools:layout_conversion_absoluteHeight="32dp"
-                tools:layout_conversion_absoluteWidth="72dp"
-                tools:layout_editor_absoluteX="152dp"
-                tools:layout_editor_absoluteY="307dp" />
-
-            <RadioButton
-                android:id="@+id/hill_n"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="15dp"
-                android:text="No"
-                android:textSize="24sp"
-                tools:layout_conversion_absoluteHeight="1dp"
-                tools:layout_conversion_absoluteWidth="63dp"
-                tools:layout_editor_absoluteX="172dp"
-                tools:layout_editor_absoluteY="355dp" />
-
-        </RadioGroup>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/l2"
-        android:layout_width="254dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/l1">
 
         <RadioGroup
             android:id="@+id/rg2"
@@ -161,13 +114,83 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="254dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/l1">
+
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/north_west"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:checked="true"
+                android:text="North - West"
+                android:textSize="24sp"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="72dp"
+                tools:layout_editor_absoluteX="152dp"
+                tools:layout_editor_absoluteY="307dp" />
+
+            <RadioButton
+                android:id="@+id/north_east"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:text="North - East"
+                android:textSize="24sp"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="72dp"
+                tools:layout_editor_absoluteX="172dp"
+                tools:layout_editor_absoluteY="355dp" />
+
+            <RadioButton
+                android:id="@+id/south_west"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:text="South - West"
+                android:textSize="24sp"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="72dp" />
+
+            <RadioButton
+                android:id="@+id/south_east"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="South - East"
+                android:textSize="24sp"
+                tools:layout_conversion_absoluteHeight="32dp"
+                tools:layout_conversion_absoluteWidth="72dp" />
+
+        </RadioGroup>
+    </LinearLayout>
+
     <EditText
         android:id="@+id/input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="45dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@+id/textView2"

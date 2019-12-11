@@ -11,15 +11,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class Preference extends AppCompatActivity {
     private EditText dis;
+    private RadioGroup loop;
+    private RadioGroup dir_group;
+    private boolean loop_choice;
+    private int direction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
         dis = findViewById(R.id.input);
+        loop = findViewById(R.id.rg2);
+        dir_group = findViewById(R.id.rg1);
     }
 
     public void onStartClick(View view){
@@ -33,6 +40,19 @@ public class Preference extends AppCompatActivity {
             Intent intent = new Intent(Preference.this, MapsActivity.class);
             Bundle a = new Bundle();
             a.putDouble("distance",Double.valueOf(dis.getText().toString()));
+            int id = loop.getCheckedRadioButtonId();
+            if (id==R.id.loop_y) loop_choice=true;
+            else loop_choice=false;
+            int dir = dir_group.getCheckedRadioButtonId();
+            switch (dir){
+                case R.id.north_west: direction=1; break;
+                case R.id.north_east: direction=2; break;
+                case R.id.south_west: direction=3; break;
+                case R.id.south_east: direction=4; break;
+                default: direction = 0; break;
+            }
+            a.putBoolean("loop",loop_choice);
+            a.putInt("direction",direction);
             intent.putExtras(a);
             startActivity(intent);
             Context context = getApplicationContext();
