@@ -26,11 +26,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 ");");
 
         // insert two original data
-        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-08', '09,89', '10', 5000);");
-        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-09', '08', '09', 3000);");
-        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-10', '06', '07', 1000);");
-        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-11', '07', '08', 500);");
-        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-12', '09', '10', 5000);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-08', '42.3482,-71.1394', '42.3565,-71.1498', 5);");
+        db.execSQL("INSERT INTO runningrouteplanner (date, startPoint, endPoint, distance) VALUES ('2019-11-09', '42.3482,-71.1394', '42.3382,-71.1519', 3);");
     }
 
     @Override
