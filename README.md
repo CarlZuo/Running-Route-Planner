@@ -140,5 +140,9 @@ The library “polyline” provided by Google Map API helps to draw out the rout
 	
 Since the data record of runners’ route cannot be so large, thus we think MySQL is good and enough to store the log data of running;
 
+#### App Download and user instructions:
+
+https://drive.google.com/drive/folders/1HPkQRUwA1bq0IvojExLg9mb5Fyn7Aaf_?usp=sharing
+
 
 
